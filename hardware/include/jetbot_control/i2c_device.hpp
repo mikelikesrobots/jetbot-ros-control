@@ -1,9 +1,11 @@
-#pragma once
+#ifndef JETBOT_CONTROL__I2C_DEVICE_HPP_
+#define JETBOT_CONTROL__I2C_DEVICE_HPP_
 
 #include <cstdint>
+#include <mutex>
 #include <optional>
 
-namespace JetBotControl {
+namespace jetbot_control {
 
 class I2CDevice {
  public:
@@ -22,4 +24,6 @@ class I2CDevice {
   uint8_t buf_[10];
 };
 
-}  // namespace JetBotControl
+}  // namespace jetbot_control
+
+#endif  // JETBOT_CONTROL__I2C_DEVICE_HPP_

@@ -1,5 +1,5 @@
 {
-  "name": "humble desktop",
+  "name": "ROS2 Humble",
   "dockerFile": "Dockerfile",
   "runArgs": [
     "--privileged",
