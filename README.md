@@ -35,6 +35,12 @@ ros2 launch jetbot_control jetbot.launch.py
 
 After this, the robot will respond to commands sent with `TwistStamped` type sent on the `/cmd_vel` topic.
 
+If you want to run mock hardware for any reason, such as not having a JetBot to run the code on, you can enable the flag as follows:
+
+```bash
+ros2 launch jetbot_control jetbot.launch.py use_mock_hardware:=true
+```
+
 ## License
 
 The code in this repository is covered by the MIT license in the [LICENSE](./LICENSE) file. However, four files are included from the [ros2_control_demos](https://github.com/ros-controls/ros2_control_demos) repository, and so are covered by the [ROS2_CONTROL_LICENSE](./ROS2_CONTROL_LICENSE) file instead. These four files are as follows:
