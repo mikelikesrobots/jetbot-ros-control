@@ -4,7 +4,7 @@ ROS2 Node for controlling a JetBot via ROS Control interfaces.
 
 ## Setup
 
-Install ROS2 Humble using VSCode Remote Containers extension. Simply open this folder using the extension and allow it to build the Docker container.
+From a WaveShare JetBot robot, clone this repository and open it over SSH. Install the Dev Containers extension and allow it to build the Docker container and open the workspace in that container.
 
 Then build the code using `colcon build` from the workspace root:
 
@@ -13,13 +13,39 @@ source /opt/ros/humble/setup.bash
 colcon build
 ```
 
-## Running the code
+## Testing the code
 
-Once built, it should be possible to run the node as a standard ROS2 Node. Note that this will only run on a JetBot with the i2c-1 bus available.
+Once built, you can run the test function to check that the library can be loaded correctly as follows:
 
 ```bash
 source install/setup.bash
-ros2 run jetbot_control jetbot_control
+./build/jetbot_control/test_jetbot_system
 ```
 
-This should cause the JetBot to spin its motors forward for half a second, then stop for half a second.
+The test should pass with log messages showing a successful initialization of the control library.
+
+## Running the code
+
+Once built, it should be possible to launch the jetbot controller using the provided launch file. Note that this will only run on a JetBot with the i2c-1 bus available.
+
+```bash
+source install/setup.bash
+ros2 launch jetbot_control jetbot.launch.py
+```
+
+After this, the robot will respond to commands sent with `TwistStamped` type sent on the `/cmd_vel` topic.
+
+If you want to run mock hardware for any reason, such as not having a JetBot to run the code on, you can enable the flag as follows:
+
+```bash
+ros2 launch jetbot_control jetbot.launch.py use_mock_hardware:=true
+```
+
+## License
+
+The code in this repository is covered by the MIT license in the [LICENSE](./LICENSE) file. However, four files are included from the [ros2_control_demos](https://github.com/ros-controls/ros2_control_demos) repository, and so are covered by the [ROS2_CONTROL_LICENSE](./ROS2_CONTROL_LICENSE) file instead. These four files are as follows:
+
+1. [jetbot.launch.py](./bringup/launch/jetbot.launch.py)
+2. [jetbot_system.cpp](./hardware/src/jetbot_system.cpp)
+3. [jetbot_system.hpp](./hardware/include/jetbot_control/jetbot_system.hpp)
+4. [visibility_control.h](./hardware/include/jetbot_control/visibility_control.h)

@@ -1,0 +1,9 @@
+<library path="jetbot_control">
+  <class name="jetbot_control/JetBotSystemHardware"
+         type="jetbot_control::JetBotSystemHardware"
+         base_class_type="hardware_interface::SystemInterface">
+    <description>
+      The ros2_control system for driving a JetBot using I2C to move the motors.
+    </description>
+  </class>
+</library>
